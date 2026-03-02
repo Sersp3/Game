@@ -11,7 +11,6 @@ FetchContent_Declare(SFML
     GIT_TAG 3.0.2
     GIT_PROGRESS ON
     GIT_SHALLOW ON
-    # Добавляем фикс для стабильности загрузки в Git
     GIT_CONFIG http.version=1.1
     EXCLUDE_FROM_ALL
     SYSTEM)
@@ -20,13 +19,12 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(main)
 
-# Исправили путь (убрали ведущий слеш)
+# MAIN TARGET
 target_sources(main
   PRIVATE
     main.cpp 
 )
 
-# Рекомендую C++20 для SFML 3.0
 target_compile_features(main
   PRIVATE
     cxx_std_20

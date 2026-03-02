@@ -1,3 +1,5 @@
 #!/bin/bash
 cmake --build build
-./build/bin/main
+if [[ "$?" == 0 ]]; then
+  ./build/bin/main
+fi
