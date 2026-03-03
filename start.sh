@@ -5,13 +5,13 @@ if [[ ! -f "build/CMakeCache.txt" ]]; then
   if [[ "$?" != 0 ]]; then
     echo "Program didn't pass setting the enviroment\n"
     exit 1 
-
+  fi 
 fi
 
 cmake --build build
 if [[ "$?" == 0 ]]; then
   ./build/bin/main
-else; then
+else
   echo "Programm didn't pass the build\n"
   exit 1
 fi

@@ -14,7 +14,7 @@ int main() {
 
   while (window.isOpen()) {
     // 1. СОБЫТИЙНЫЙ ЦИКЛ (для разовых действий и системных команд)
-    while (const std::optional event = window.pollEvent()) {
+    while (const std::optional<sf::Event> event = window.pollEvent()) {
       if (event->is<sf::Event::Closed>()) {
         window.close();
       }
@@ -26,15 +26,15 @@ int main() {
         }
       }
     }
-    
-    // 2. REAL-TIME INPUT (для плавного движения)
     sf::Vector2f movement{0.f, 0.f};
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) movement.y -= 5.f;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) movement.y += 5.f;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) movement.x -= 5.f;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) movement.x += 5.f;
-
     player.move(movement);
+    
+    // 2. REAL-TIME INPUT (для плавного движения)
+
 
     // 3. ОТРИСОВКА
     window.clear(sf::Color::Black);
