@@ -22,7 +22,9 @@ add_executable(main)
 # MAIN TARGET
 target_sources(main
   PRIVATE
-    main.cpp 
+    main.cpp
+    src/Window/window.cpp
+    src/Game/Game.cpp
 )
 
 target_compile_features(main
@@ -33,6 +35,9 @@ target_compile_features(main
 target_link_libraries(main
   PRIVATE 
     SFML::Graphics
+    SFML::Audio
+    SFML::System
+    SFML::Window
 )
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT main)
