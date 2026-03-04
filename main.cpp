@@ -8,8 +8,8 @@ int main() {
   // Ограничиваем FPS, чтобы не перегружать Instruction Pointer
   window.setFramerateLimit(60);
 
-  sf::CircleShape player(25.f);
-  player.setFillColor(sf::Color::Blue);
+  sf::Texture bird_texture("Textures/FlappyBird.png");
+  sf::Sprite player(bird_texture);
   player.setPosition({400.f, 300.f});
 
   while (window.isOpen()) {
@@ -20,11 +20,6 @@ int main() {
       }
 
       // Смена цвета по нажатию пробела (разовое событие)
-      if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) {
-        if (keyPressed->code == sf::Keyboard::Key::Space) {
-          player.setFillColor(sf::Color::Red);
-        }
-      }
     }
     sf::Vector2f movement{0.f, 0.f};
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) movement.y -= 5.f;
