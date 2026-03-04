@@ -23,8 +23,6 @@ add_executable(main)
 target_sources(main
   PRIVATE
     main.cpp
-    src/Window/window.cpp
-    src/Game/Game.cpp
 )
 
 target_compile_features(main
