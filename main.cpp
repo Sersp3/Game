@@ -2,18 +2,18 @@
 #include <optional>
 
 int main() {
-  // Создаем окно. В 3.0 используем фигурные скобки для VideoMode
-  sf::RenderWindow window(sf::VideoMode({800, 600}), "SFML 3.0: 2-Spaces Style");
+  std::string SPRITE_DIR = "flappy-bird-assets/sprites/";
+
+  sf::RenderWindow window(sf::VideoMode({800, 600}), "Flappy Bird");
   
-  // Ограничиваем FPS, чтобы не перегружать Instruction Pointer
   window.setFramerateLimit(60);
 
-  sf::Texture bird_texture("Textures/FlappyBird.png");
+  sf::Texture bird_texture(SPRITE_DIR + "bluebird-midflap.png");
+
   sf::Sprite player(bird_texture);
   player.setPosition({400.f, 300.f});
 
   while (window.isOpen()) {
-    // 1. СОБЫТИЙНЫЙ ЦИКЛ (для разовых действий и системных команд)
     while (const std::optional<sf::Event> event = window.pollEvent()) {
       if (event->is<sf::Event::Closed>()) {
         window.close();
