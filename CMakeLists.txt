@@ -17,25 +17,23 @@ FetchContent_Declare(SFML
 
 FetchContent_MakeAvailable(SFML)
 
+add_library(bird)
 add_executable(main)
 
-# MAIN TARGET
-target_sources(main
-  PRIVATE
-    main.cpp
-)
+target_sources(bird PRIVATE src/Bird.cpp)
+target_include_directories(bird PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_compile_features(main
-  PRIVATE
-    cxx_std_20
-)
-
-target_link_libraries(main
-  PRIVATE 
+target_link_libraries(bird
+  PUBLIC
     SFML::Graphics
     SFML::Audio
     SFML::System
     SFML::Window
 )
+
+target_sources(main PRIVATE main.cpp)
+target_compile_features(main PRIVATE cxx_std_20)
+
+target_link_libraries(main PRIVATE bird)
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT main)
