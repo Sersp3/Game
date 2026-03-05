@@ -1,12 +1,12 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "config.hpp"
-#include "IMovable.hpp"
+#include <config.hpp>
+#include <IMovable.hpp>
 
 class Bird : public sf::Drawable, public sf::Transformable, public IMovable {
  public:
-  Bird(sf::Vector2f position);
+  Bird(const sf::Texture&, sf::Vector2f position);
 
   void Move(sf::Time delta_time) override;
 

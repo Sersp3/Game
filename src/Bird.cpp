@@ -1,9 +1,9 @@
-#include "../include/Bird.hpp"
+#include <Bird.hpp>
 
-Bird::Bird(sf::Vector2f position) {
+Bird::Bird(const sf::Texture& bird_texture, sf::Vector2f position) {
   bird.setPosition(position);
-  bird.setRadius(25);
-  bird.setTexture(&config::BIRD_TEXTURE);
+  bird.setRadius(config::BIRD_RADIUS);
+  bird.setTexture(&bird_texture);
 }
 
 void Bird::Move(sf::Time delta_time) {
@@ -12,7 +12,7 @@ void Bird::Move(sf::Time delta_time) {
 }
 
 void Bird::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-  states.transform *= bird.getTransform();
+  states.transform *= getTransform();
 
   states.texture = bird.getTexture();
 
