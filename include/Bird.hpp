@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 #include <config.hpp>
 #include <IMovable.hpp>
 

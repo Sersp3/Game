@@ -7,11 +7,11 @@ int main() {
   sf::Texture background_texture(config::ASSETS_DIR + "background-day.png");
   background_texture.setRepeated(true);
 
-  sf::RenderWindow window(sf::VideoMode({800, 800}), "Hello");
+  sf::RenderWindow window(sf::VideoMode({1024, 512}), "Hello");
   sf::View view(sf::FloatRect({0.f, 0.f}, config::VIEW_PARAMS));
-
   window.setView(view);
-  Bird bird(bird_texture, {50.f, 50.f});
+
+  Bird bird(bird_texture, {256.f, 256.f});
   Background background(background_texture, window.getSize());
 
   sf::Clock timer;
