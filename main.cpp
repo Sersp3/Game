@@ -1,5 +1,6 @@
 #include <Bird.hpp>
 #include <Background.hpp>
+#include <iostream>
 
 int main() {
   sf::Texture bird_texture(config::ASSETS_DIR + "yellowbird-midflap.png");
@@ -7,8 +8,11 @@ int main() {
   background_texture.setRepeated(true);
 
   sf::RenderWindow window(sf::VideoMode({800, 800}), "Hello");
+  sf::View view(sf::FloatRect({0.f, 0.f}, config::VIEW_PARAMS));
+
+  window.setView(view);
   Bird bird(bird_texture, {50.f, 50.f});
-  Background background(background_texture);
+  Background background(background_texture, window.getSize());
 
   sf::Clock timer;
   while (window.isOpen()) {
