@@ -9,6 +9,7 @@ int main() {
   sf::RenderWindow window(sf::VideoMode({800, 800}), "Hello");
   Bird bird(bird_texture, {50.f, 50.f});
   Background background(background_texture);
+
   sf::Clock timer;
   while (window.isOpen()) {
     sf::Time delta_time = timer.restart();
@@ -16,6 +17,12 @@ int main() {
     while (const std::optional event = window.pollEvent()) {
       if (event->is<sf::Event::Closed>()) {
         window.close();
+      }
+
+      if (const sf::Event::KeyPressed* key = event->getIf<sf::Event::KeyPressed>()) {
+        if (key->scancode == sf::Keyboard::Scancode::Space) {
+          bird.Jump();
+        }
       }
     }
 

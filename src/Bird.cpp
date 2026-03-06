@@ -11,6 +11,10 @@ void Bird::Move(sf::Time delta_time) {
   velocity += acceleration * delta_time.asSeconds();
 }
 
+void Bird::Jump() {
+  velocity += config::BIRD_JUMP;
+}
+
 void Bird::draw(sf::RenderTarget& target, sf::RenderStates states) const {
   states.transform *= getTransform();
 
