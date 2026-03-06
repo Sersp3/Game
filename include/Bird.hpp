@@ -13,6 +13,8 @@ class Bird : public sf::Drawable, public sf::Transformable, public IMovable {
 
   void Jump();
 
+  void NormalizeSpeed();
+
   void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
   
  private:

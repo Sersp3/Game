@@ -11,7 +11,7 @@ int main() {
   sf::View view(sf::FloatRect({0.f, 0.f}, config::VIEW_PARAMS));
   window.setView(view);
 
-  Bird bird(bird_texture, {256.f, 256.f});
+  Bird bird(bird_texture, config::BIRD_START);
   Background background(background_texture, window.getSize());
 
   sf::Clock timer;
