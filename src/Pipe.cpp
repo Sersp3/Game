@@ -11,11 +11,11 @@ Pipe::Pipe(const sf::Texture& pipe_texture, float gap_y, float pos_y) : top_pipe
 }
 
 sf::FloatRect Pipe::GetTopPipeGlobalBound() const {
-  return top_pipe.getGlobalBounds();
+  return getTransform().transformRect(top_pipe.getGlobalBounds());
 }
 
 sf::FloatRect Pipe::GetBottomPipeGlobalBound() const {
-  return bottom_pipe.getGlobalBounds();
+  return getTransform().transformRect(bottom_pipe.getGlobalBounds());
 }
 
 void Pipe::draw(sf::RenderTarget& target, sf::RenderStates states) const {
