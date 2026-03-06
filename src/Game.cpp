@@ -30,7 +30,6 @@ void Game::AddPipe(float x_shift) {
   static std::mt19937 gen(std::random_device{}());
   std::uniform_real_distribution<float> dist(0, config::VIEW_PARAMS.y - 128);
 
-
   pipes.push_back(Pipe(*pipe_texture, 128, dist(gen)));
   pipes[pipes.size() - 1].move({x_shift, 0});
 }
