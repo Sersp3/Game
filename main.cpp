@@ -1,5 +1,6 @@
 #include <Bird.hpp>
 #include <Background.hpp>
+#include <View.hpp>
 #include <iostream>
 
 int main() {
@@ -8,11 +9,13 @@ int main() {
   background_texture.setRepeated(true);
 
   sf::RenderWindow window(sf::VideoMode({1024, 512}), "Hello");
-  sf::View view(sf::FloatRect({0.f, 0.f}, config::VIEW_PARAMS));
-  window.setView(view);
+  View view(window.getSize());
+  window.setView(view.GetView());
 
   Bird bird(bird_texture, config::BIRD_START);
   Background background(background_texture, window.getSize());
+
+  bird.GetGlobalBounds().position.x;
 
   sf::Clock timer;
   while (window.isOpen()) {
@@ -23,6 +26,10 @@ int main() {
         window.close();
       }
 
+      if (event->is<sf::Event::Resized>()) {
+        view.UpdateView(window.getSize());
+      }
+
       if (const sf::Event::KeyPressed* key = event->getIf<sf::Event::KeyPressed>()) {
         if (key->scancode == sf::Keyboard::Scancode::Space) {
           bird.Jump();
@@ -31,13 +38,13 @@ int main() {
     }
 
     bird.Move(delta_time);
-    view.move(config::BASE_BIRD_VELOCITY * delta_time.asSeconds());
-    window.setView(view);
+  
+    view.Move(delta_time);
+
+    window.setView(view.GetView());
     
-    timer.reset();
-    timer.start();
     
-    window.clear(sf::Color::White);
+    window.clear(sf::Color::Black);
     window.draw(background);
     window.draw(bird);
     window.display();

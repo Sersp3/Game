@@ -13,7 +13,5 @@ void Background::UpdateWindowResize(sf::Vector2u window_size) {
 void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
   states.transform *= getTransform();
 
-  states.texture = &background.getTexture();
-
   target.draw(background, states);
 }
