@@ -1,4 +1,5 @@
 #include <Game.hpp>
+#include <random>
 
 Game::Game(View v, Background b, Bird bi, sf::Texture* pipe_texture) : view(v), background(b), bird(bi), pipe_texture(pipe_texture) {
   Reset();
@@ -26,12 +27,22 @@ void Game::Reset() {
 }
 
 void Game::AddPipe(float x_shift) {
-  pipes.push_back(Pipe(*pipe_texture, 128, 128));
+  static std::mt19937 gen(std::random_device{}());
+  std::uniform_real_distribution<float> dist(0, config::VIEW_PARAMS.y - 128);
+
+
+  pipes.push_back(Pipe(*pipe_texture, 128, dist(gen)));
   pipes[pipes.size() - 1].move({x_shift, 0});
 }
 
 bool Game::IsCollision() {
   sf::FloatRect bird_bound = bird.GetGlobalBounds();
+
+  sf::Vector2f inset = bird_bound.size * 0.1f;
+  bird_bound.position += inset;
+  bird_bound.size     -= 2.0f * inset;
+
+
   for (size_t i = 0; i < pipes.size(); ++i) {
     if (bird_bound.findIntersection(pipes[i].GetTopPipeGlobalBound())) {
       return true;
@@ -54,6 +65,7 @@ void Game::Update(sf::Time delta_time) {
   bird.Move(delta_time);
   view.Move(delta_time);
   world_borders.move(delta_time.asSeconds() * config::BASE_VIEW_VELOCITY);
+  
   if (IsCollision()) {
     Reset();
   }

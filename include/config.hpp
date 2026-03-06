@@ -15,5 +15,5 @@ namespace config {
   inline float BIRD_VELOCITY_Y_BOUND = 256.f;
   inline float PIPE_WIDTH = 25;
   inline sf::Vector2u BASE_WINDOW({1024, 512});
-  inline float PIPE_FREQUENCY = 1.5;
+  inline float PIPE_FREQUENCY = 1;
 };
