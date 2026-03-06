@@ -24,11 +24,6 @@ add_executable(main)
 
 target_sources(objects
   PRIVATE
-    src/Bird.cpp
-    src/Background.cpp
-    src/View.cpp
-    src/Pipe.cpp
-    src/Game.cpp
 )
 
 target_link_libraries(objects
