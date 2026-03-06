@@ -31,6 +31,8 @@ int main() {
     }
 
     bird.Move(delta_time);
+    view.move(config::BASE_BIRD_VELOCITY * delta_time.asSeconds());
+    window.setView(view);
     
     timer.reset();
     timer.start();

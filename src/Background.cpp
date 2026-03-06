@@ -7,7 +7,7 @@ Background::Background(const sf::Texture& background_texture, sf::Vector2u windo
 void Background::UpdateWindowResize(sf::Vector2u window_size) {
   int x = static_cast<int>(window_size.x);
   int y = static_cast<int>(window_size.y);
-  background.setTextureRect(sf::IntRect({0, 0}, {x, y}));
+  background.setTextureRect(sf::IntRect({0, 0}, {1000000, y}));
 }
 
 void Background::draw(sf::RenderTarget& target, sf::RenderStates states) const {
