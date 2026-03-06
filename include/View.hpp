@@ -11,6 +11,8 @@ class View : public IMovable {
 
   void Move(sf::Time delta_time);
 
+  void Reset();
+
   void UpdateView(sf::Vector2u);
  private:
   sf::View view;

@@ -21,6 +21,10 @@ void View::UpdateView(sf::Vector2u window_size) {
   }
 }
 
+void View::Reset() {
+  // view.setSize(config::VIEW_PARAMS);
+  view.setCenter(config::VIEW_PARAMS * float(0.5));
+}
 
 void View::Move(sf::Time delta_time) {
   view.move(config::BASE_VIEW_VELOCITY * delta_time.asSeconds());

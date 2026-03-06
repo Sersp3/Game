@@ -20,6 +20,13 @@ sf::FloatRect Bird::GetGlobalBounds() const {
   return bird.getGlobalBounds();
 }
 
+void Bird::Reset() {
+  setPosition(config::BIRD_START);
+  velocity = config::BASE_BIRD_VELOCITY;
+  acceleration = config::GRAVITY;
+  setRotation(sf::degrees(0.f));  
+}
+
 void Bird::NormalizeSpeed() {
   velocity.y = std::min(std::max(velocity.y, -config::BIRD_VELOCITY_Y_BOUND), config::BIRD_VELOCITY_Y_BOUND);
 }

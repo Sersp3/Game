@@ -37,6 +37,11 @@ int main() {
         if (key->scancode == sf::Keyboard::Scancode::Space) {
           bird.Jump();
         }
+
+        if (key->scancode == sf::Keyboard::Scancode::R) {
+          bird.Reset();
+          view.Reset();
+        }
       }
     }
 

@@ -7,9 +7,11 @@
 
 class Bird : public sf::Drawable, public sf::Transformable, public IMovable {
  public:
-  Bird(const sf::Texture&, sf::Vector2f position);
+  Bird(const sf::Texture&, sf::Vector2f position = config::BIRD_START);
 
   void Move(sf::Time delta_time) override;
+
+  void Reset();
 
   sf::FloatRect GetGlobalBounds() const;
 
