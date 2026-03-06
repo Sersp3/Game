@@ -16,7 +16,7 @@ void Bird::Move(sf::Time delta_time) {
   NormalizeSpeed();
 }
 
-sf::FloatRect Bird::GetGlobalBounds() {
+sf::FloatRect Bird::GetGlobalBounds() const {
   return bird.getGlobalBounds();
 }
 

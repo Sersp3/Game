@@ -27,6 +27,7 @@ target_sources(objects
     src/Bird.cpp
     src/Background.cpp
     src/View.cpp
+    src/Pipe.cpp
 )
 
 target_link_libraries(objects

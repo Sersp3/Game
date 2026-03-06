@@ -11,7 +11,7 @@ class Bird : public sf::Drawable, public sf::Transformable, public IMovable {
 
   void Move(sf::Time delta_time) override;
 
-  sf::FloatRect GetGlobalBounds();
+  sf::FloatRect GetGlobalBounds() const;
 
   void Jump();
 
