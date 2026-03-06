@@ -38,11 +38,6 @@ void Game::AddPipe(float x_shift) {
 bool Game::IsCollision() {
   sf::FloatRect bird_bound = bird.GetGlobalBounds();
 
-  sf::Vector2f inset = bird_bound.size * 0.1f;
-  bird_bound.position += inset;
-  bird_bound.size     -= 2.0f * inset;
-
-
   for (size_t i = 0; i < pipes.size(); ++i) {
     if (bird_bound.findIntersection(pipes[i].GetTopPipeGlobalBound())) {
       return true;
