@@ -1,23 +1,27 @@
-#include <Bird.hpp>
-#include <Background.hpp>
-#include <View.hpp>
-#include <iostream>
-#include <Pipe.hpp>
-#include <Game.hpp>
+#include <SFML/Graphics.hpp>
+#include <Config.hpp>
+#include <AssetManager/AssetManager.hpp>
+#include <Player/Player.hpp>
 
 int main() {
-  sf::Texture pipe_texture(config::ASSETS_DIR + "pipe-green.png");
-  sf::Texture bird_texture(config::ASSETS_DIR + "yellowbird-midflap.png");
-  sf::Texture background_texture(config::ASSETS_DIR + "background-day.png");
-  background_texture.setRepeated(true);
+  sf::RenderWindow window(sf::VideoMode(config::WINDOW_RESOLUTION), "Game");
+  AssetManager assets;
+  assets.SetTexture("player", "assets/Mushroom/Mushroom without VFX/Mushroom-Idle.png");
+  Player player(assets.GetTexture("player"));
 
-  View view(config::BASE_WINDOW);
-  Bird bird(bird_texture, config::BIRD_START);
-  Background background(background_texture, config::BASE_WINDOW);
+  sf::Clock timer;
+  while (window.isOpen()) {
+    sf::Time dt = timer.restart();
 
-  Game game(view, background, bird, &pipe_texture);
+    while (const std::optional<sf::Event> event = window.pollEvent()) {
+      if (event->is<sf::Event::Closed>()) {
+        window.close();
+      }
+    }
 
-  game.Start();
-
-  return 0;
+    player.Update(dt);
+    window.clear();
+    window.draw(player);
+    window.display();
+  }
 }

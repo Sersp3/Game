@@ -17,14 +17,11 @@ FetchContent_Declare(SFML
 
 FetchContent_MakeAvailable(SFML)
 
-include_directories(include)
+include_directories(src)
 
 add_library(objects)
-add_executable(main)
 
-target_sources(objects
-  PRIVATE
-)
+add_executable(main)
 
 target_link_libraries(objects
   PUBLIC
@@ -34,8 +31,15 @@ target_link_libraries(objects
     SFML::Window
 )
 
+target_sources(objects
+  PRIVATE
+    src/Player/Player.cpp
+    src/AssetManager/AssetManager.cpp
+)
+
 target_sources(main PRIVATE main.cpp)
 target_compile_features(main PRIVATE cxx_std_20)
+target_compile_features(objects PRIVATE cxx_std_20)
 
 target_link_libraries(main PRIVATE objects)
 
